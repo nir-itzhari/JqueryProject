@@ -1,0 +1,720 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Monrserrat', Helvetica, sans-serif;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.error {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    background-color: transparent;
+    font-size: 50px;
+    font-weight: 700;
+    z-index: 1;
+    justify-content: center;
+
+}
+
+a.tryAgain {
+    cursor: pointer;
+    color: blue;
+    font-size: 55px;
+    font-weight: 700;
+}
+
+a.tryAgain:hover {
+    color: rgba(34, 34, 226, 0.747);
+    font-size: 60px;
+    transition-duration: .5s;
+}
+
+.loader {
+    display: none;
+    z-index: 999;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.4;
+}
+
+span.title {
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: #cf1b1b;
+    font-size: 90px;
+    letter-spacing: 8px;
+    cursor: pointer;
+}
+
+span.title::before {
+    content: "Crypto";
+    position: absolute;
+    color: transparent;
+    background-image: repeating-linear-gradient(45deg,
+            transparent 0,
+            transparent 2px,
+            white 2px,
+            white 4px);
+    -webkit-background-clip: text;
+    top: 0px;
+    left: 0;
+    z-index: -1;
+    transition: 1s;
+}
+
+span.title::after {
+    content: "Crypto";
+    position: absolute;
+    color: transparent;
+    background-image: repeating-linear-gradient(135deg,
+            transparent 0,
+            transparent 2px,
+            white 2px,
+            white 4px);
+    -webkit-background-clip: text;
+    top: 0px;
+    left: 0px;
+    transition: 1s;
+}
+
+span.title:hover:before {
+    top: 10px;
+    left: 10px;
+}
+
+span.title:hover:after {
+    top: -10px;
+    left: -10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.content {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.contentError {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.buttonGroupError {
+    display: inline-flex;
+    align-items: center;
+}
+
+#myBtn {
+    font-weight: 700;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 997;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    scroll-behavior: smooth;
+}
+
+.name {
+    max-height: 40px;
+    max-width: 230px;
+    color: orange;
+    overflow: hidden;
+    font-size: 13px;
+}
+
+
+.buttonGroup {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    margin-top: 130px;
+    flex-direction: column;
+}
+
+label.btn.btn-outline-primary {
+    color: greenyellow;
+}
+
+.btn-group {
+    height: 39px;
+    display: inline-flex;
+}
+
+.btn-one {
+    color: rgb(33, 20, 218);
+    margin-top: 5px;
+    width: 100%;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.btn-one span {
+    transition: all 0.3s;
+}
+
+.btn-one::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+    transform: scale(0.1, 1);
+}
+
+.btn-one:hover span {
+    letter-spacing: 2px;
+}
+
+.btn-one:hover::before {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.btn-one::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-one:hover::after {
+    opacity: 0;
+    transform: scale(0.1, 1);
+}
+
+.search-box {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    margin-top: 10px;
+}
+
+.input-search {
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #22a6b3;
+    padding-right: 40px;
+    color: #fff;
+}
+
+.input-search::placeholder {
+    color: rgb(255, 0, 0);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+}
+
+.btn-search {
+    margin-left: 40%;
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: #ffffff;
+    background-color: transparent;
+    pointer-events: painted;
+}
+
+.btn-search:focus~.input-search {
+    margin-left: -2%;
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.input-search:focus {
+    margin-left: -2%;
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.liResult {
+    margin-right: 10px;
+    font-weight: 700;
+    z-index: 100;
+    overflow-y: auto;
+    top: 235px;
+    height: 50%;
+    filter: invert(1);
+    position: absolute;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+li {
+    background: linear-gradient(87deg, white, lightblue);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    border-bottom: none;
+    list-style-type: none;
+    z-index: 99;
+}
+
+li:hover {
+    background: #ccc;
+    color: orange;
+
+}
+
+.curContainer {
+    display: none;
+    flex-direction: column;
+    background: linear-gradient(180deg, black, white);
+    filter: drop-shadow(2px 4px 6px black);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px black;
+    width: 300px;
+    position: relative;
+    padding: 5px;
+    margin: 5px;
+    height: 180px;
+}
+
+/* 
+.img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    z-index: 0;
+    border: none;
+    top: -10px;
+    left: 0px;
+} */
+
+.wait {
+    cursor: wait;
+}
+
+.toggleFull {
+    background-position: right center !important;
+    background-color: red !important;
+    border-color: white !important;
+}
+
+.coinNameAndSymbol {
+    border-radius: 5px;
+    padding: 7px;
+    border: none;
+    filter: drop-shadow(2px 4px 6px black);
+    min-height: 125px;
+    background: #00000096;
+    z-index: 1;
+}
+
+.symbol {
+    display: inline-flex;
+    flex-direction: row;
+    color: white;
+    font-size: 19px;
+    font-weight: bolder;
+    width: 100%;
+}
+
+.form-check-input {
+    flex: 20%;
+}
+
+.infoIMG {
+    vertical-align: middle;
+    width: 50px;
+    flex: 20%;
+    margin-top: 5px;
+    height: 50px;
+}
+
+.btn-group>.btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+    border-radius: 20px;
+    background: none;
+    border-color: yellow;
+    box-shadow: 0px 0px 13px yellowgreen;
+}
+
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    border-radius: 20px;
+    background: none;
+    border-color: yellow;
+    box-shadow: 0px 0px 13px yellowgreen;
+}
+
+.divInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+}
+
+.coinInfo {
+    flex: 70%;
+}
+
+
+.modal-content {
+    display: none;
+    top: 200px;
+    position: fixed;
+    height: 500px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    z-index: 1000;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalBg {
+    display: none;
+    opacity: 0.8;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: black;
+}
+
+.modalTitle {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+div.canvasjs-chart-toolbar {
+    right: 30px !important;
+}
+
+.tdBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cancel Button Css */
+
+/* Reset */
+@import url(//codepen.io/chrisdothtml/pen/ojLzJK.css);
+
+/* Main Styles */
+.button {
+    display: block;
+    background-color: #332a29;
+    width: 80%;
+    height: 50px;
+    line-height: 50px;
+    margin: auto;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.button span,
+.button .icon {
+    display: block;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    top: 0;
+}
+
+.button span {
+    width: 72%;
+    line-height: inherit;
+    font-size: 22px;
+    text-transform: uppercase;
+    left: 0;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.button span:after {
+    content: "";
+    background-color: #a53125;
+    width: 2px;
+    height: 70%;
+    position: absolute;
+    top: 15%;
+    right: -1px;
+}
+
+.button .icon {
+    width: 28%;
+    right: 0;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
+}
+
+.button .icon .fa {
+    font-size: 30px;
+    vertical-align: middle;
+    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
+}
+
+.button .icon .fa-remove {
+    height: 36px;
+}
+
+.button .icon .fa-check {
+    display: none;
+}
+
+.button.success span, .button:hover span {
+    left: -72%;
+    opacity: 0;
+}
+
+.button.success .icon, .button:hover .icon {
+    width: 100%;
+}
+
+.button.success .icon .fa, .button:hover .icon .fa {
+    font-size: 45px;
+}
+
+.button.success {
+    background-color: #27ae60;
+}
+
+.button.success .icon .fa-remove {
+    display: none;
+}
+
+.button.success .icon .fa-check {
+    display: inline-block;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.button:hover .icon .fa-remove {
+    height: 46px;
+}
+
+.button:active {
+    opacity: 1;
+}
+
+.modalNote {
+    position: absolute;
+    top: 95%;
+}
+
+.failReport {
+    display: none;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    border: 8px solid black;
+    height: 500px;
+    opacity: 0.7;
+    filter: drop-shadow(0px 0px 6px white);
+}
+
+.failMsg {
+    color: black;
+    margin: 0;
+    margin-top: 100px;
+    padding: 10px;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.failTitle {
+    color: black;
+    margin: 0;
+    padding: 10px;
+    font-size: xxx-large;
+    font-weight: 700;
+}
+
+.about {
+    font-family: 'Montserrat';
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    color: black;
+    background: linear-gradient(181deg, white, #cffff6);
+    border-radius: 5px;
+    filter: drop-shadow();
+    border: 1px inset black;
+    align-items: center;
+}
+
+.myIMG {
+    width: 100px;
+    margin: 10px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.contentAbout {
+    width: 53%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titleAndInfoDiv {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    padding: 10px;
+    background: #ccc;
+    border-radius: 10px;
+    box-shadow: 5px 15px 15px;
+}
+
+.titleAbout {
+    font-size: xx-large;
+}
+
+.details {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.details>* {
+    margin: 10px;
+}
+
+.padding-Details {
+    padding: 10px;
+}
